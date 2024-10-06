@@ -2,35 +2,33 @@
 using Newtonsoft.Json.Serialization;
 using TShockAPI;
 
-namespace Plugin
-{
+namespace Plugin;
+
     internal class Configuration
     {
-        [JsonProperty("装备饰品检测", Order = -14)]
-        public bool Enable2 { get; set; } = true;
-
-        [JsonProperty("背包持有检测", Order = -13)]
+        [JsonProperty("背包检测开关", Order = -13)]
         public bool Enable { get; set; } = true;
 
-        [JsonProperty("背包存物速度", Order = -12)]
-        public float ItemTime { get; set; } = 120f;
-        [JsonProperty("背包存钱速度", Order = -11)]
-        public float CoinTime { get; set; } = 20f;
+        [JsonProperty("储物速度", Order = -12)]
+        public float ItemTime { get; set; } = 10f;
+
+        [JsonProperty("自动存钱", Order = -11)]
+        public bool AutoCoin { get; set; } = false;
 
         [JsonProperty("使用说明1", Order = -10)]
-        public static string Text { get; set; } = "[是否手持] 需要选中 [持有物品] 其中1个才会启动存储功能，关闭则背包含有 其中1个就会启动";
+        public static string Text { get; set; } = GetString("[手持存储模式] 需要选中 [触发存储的物品] 其中1个才会启动存储功能(2024年10月6日已修复)，关闭则背包含有[存储道具]就会自存[储存物品表]的物品");
 
         [JsonProperty("使用说明2", Order = -10)]
-        public static string Text2 { get; set; } = "[存物速度] 不要低于60帧(推荐120)，否则手动 [连续] 快速放入 [同样物品到存储空间格子] 会导致物品数量翻倍";
+        public static string Text2 { get; set; } = GetString("[储物速度] 不要在 [手持存储模式] 关闭的情况下: 低于60帧(推荐120)，[自动存钱] 与 [装备饰品] 不受 [储物速度]影响");
 
         [JsonProperty("使用说明3", Order = -10)]
-        public static string Text3 { get; set; } = "[物品名] 会在使用 [/Reload] 指令时根据 [物品ID] 自动写入，[物品数量] 为储存最低数量要求 ";
+        public static string Text3 { get; set; } = GetString("[物品名] 会在使用 /reload 指令时根据 物品ID 自动写入，[物品数量] 为触发储存机制的最低数量要求 ");
 
         [JsonProperty("使用说明4", Order = -10)]
-        public static string Text4 { get; set; } = "[装备饰品] 只会检测装备3格+饰品7格，与[存物速度]等无关，装备指定饰品(盔甲)玩家只要移动或攻击就会触发自存 ";
+        public static string Text4 { get; set; } = GetString("[装备饰品存储模式] 只会检测装备3格+饰品7格，装备指定饰品(盔甲)玩家只要移动或攻击就会触发存储机制，CPU主频没3Ghz以上的别开 ");
 
         [JsonProperty("使用说明5", Order = -10)]
-        public static string Text5 { get; set; } = "[存在BUG] 收藏的物品会被取消收藏(指虚空袋的药水堆叠进箱子的风险) ";
+        public static string Text5 { get; set; } = GetString("[存在BUG] 收藏的物品会被取消收藏(指虚空袋的药水堆叠进箱子的风险) ,物品如果没放到【存钱罐】等储存空间内是不会触发自动存储的");
 
         [JsonProperty("存钱罐", Order = -9)]
         public bool bank1 { get; set; } = true;
@@ -41,16 +39,18 @@ namespace Plugin
         [JsonProperty("虚空袋", Order = -7)]
         public bool bank4 { get; set; } = true;
 
-        [JsonProperty("存物提示", Order = -4)]
+        [JsonProperty("自动储物提示", Order = -4)]
         public bool Mess { get; set; } = true;
 
-        [JsonProperty("是否手持(↓)", Order = -1)]
-        public bool Hand { get; set; } = false;
+        [JsonProperty("手持存储模式(↓)", Order = -1)]
+        public bool Hand { get; set; } = true;
 
-        [JsonProperty("背包持有", Order = 1)]
+        [JsonProperty("触发存储的物品ID", Order = 1)]
         public int[] HoldItems { get; set; } = new int[]{ 87, 346 , 3213, 3813, 4076, 4131, 5325 };
 
-        [JsonProperty("装备饰品", Order = 2)]
+        [JsonProperty("装备饰品存储模式", Order = 2)]
+        public bool Enable2 { get; set; } = false;
+        [JsonProperty("装备饰品的物品ID", Order = 2)]
         public int[] ArmorItem { get; set; } = new int[] { 88, 410, 411, 489, 490, 491, 855, 935, 1301, 2220, 2998, 3034, 3035, 3061, 3068, 4008, 4056, 4989, 5107, 5126 };
 
         [JsonProperty("储存物品表", Order = 3)]
@@ -166,4 +166,3 @@ namespace Plugin
         #endregion
 
     }
-}
