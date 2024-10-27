@@ -11,11 +11,6 @@ public class MyData
         //玩家名字
         public string Name { get; set; }
 
-        public bool IsActive { get; set; }
-
-        //玩家出入服务器的记录时间
-        public DateTime LogTime { get; set; }
-
         //自动识别模式
         public bool AutoMode { get; set; } = false;
 
@@ -39,12 +34,10 @@ public class MyData
         //自动储存表
         public List<string> ItemName { get; set; }
 
-        public ItemData(string name = "",bool Active = true, bool enabled = true, bool auto = true, bool mess = true, DateTime time = default, long up = 10, List<string> item = null!)
+        public ItemData(string name = "", bool enabled = true, bool auto = true, bool mess = true, long up = 10, List<string> item = null!)
         {
             this.Name = name ?? "";
-            this.IsActive = Active;
             this.AutoMode = enabled;
-            this.LogTime = time;
             this.Bank = auto;
             this.Mess = mess;
             this.UpdateRate = up;

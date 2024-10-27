@@ -34,19 +34,6 @@ internal class Configuration
     [JsonProperty("虚空袋", Order = -7)]
     public bool bank4 { get; set; } = true;
 
-    [JsonProperty("广告开关", Order = -2)]
-    public bool Enabled { get; set; } = true;
-
-    [JsonProperty("广告内容", Order = -1)]
-    public string Advertisement { get; set; } = $"\n[i:3456][C/F2F2C7:插件开发] [C/BFDFEA:by] [c/00FFFF:羽学][i:3459]";
-
-    [JsonProperty("是否清理数据", Order = 1)]
-    public bool ClearData { get; set; } = true;
-
-    [JsonProperty("清理数据周期/小时", Order = 2)]
-    public long timer { get; set; } = 24;
-
-
     [JsonProperty("触发存储的物品ID", Order = 3)]
     public int[] BankItems { get; set; } = new int[] { 87, 346, 3213, 3813, 4076, 4131, 5325 };
 

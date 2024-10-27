@@ -6,6 +6,11 @@
   
 ## 更新日志  
 ```
+v1.2.8
+移除了自动清理玩家数据的逻辑与其相关配置项
+将/ast reset指令改为:
+单独的/astreset指令方便跳出循环重置服务器
+
 v1.2.7 fix
 修复钱币堆叠错误问题
 
@@ -78,7 +83,7 @@ v1.0.0
 | /ast mess  | /自存 mess |   AutoStore.use    |    开启或关闭自存消息    |
 | /ast sd 数值 | /自存 speed |   AutoStore.use    |    设置储存速度    |
 | /ast add 或 del id  | /自存 add 或 del 物品名|   AutoStore.use    |    添加或移除自己的自存物品    |
-| /ast reset | /自存 reset|   AutoStore.admin    |    清空玩家数据表（重置服务器用）    |
+| /astreset | /重置自存|   AutoStore.admin    |    清空玩家数据表（重置服务器用）    |
 | /reload  | 无 |   tshock.cfg.reload    |    重载配置文件    |
 
 ---
@@ -106,10 +111,6 @@ v1.0.0
   "保险箱": true,
   "虚空袋": true,
   "护卫熔炉": true,
-  "广告开关": true,
-  "广告内容": "\n[i:3456][C/F2F2C7:插件开发] [C/BFDFEA:by] [c/00FFFF:羽学][i:3459]",
-  "是否清理数据": true,
-  "清理数据周期/小时": 24,
   "触发存储的物品ID": [
     87,
     346,

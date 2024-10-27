@@ -5,6 +5,40 @@ namespace AutoStoreItems;
 
 public class Commands
 {
+    #region 菜单方法
+    private static void HelpCmd(TSPlayer player)
+    {
+        if (player == null) return;
+        else
+        {
+            player.SendMessage("【自动储存】指令菜单 [i:3456][C/F2F2C7:插件开发] [C/BFDFEA:by] [c/00FFFF:羽学][i:3459]\n" +
+             "/ast —— 查看自动储存菜单\n" +
+             "/astreset —— 清空[c/85CFDE:所有玩家]数据\n" +
+             "/ast auto —— 开启|关闭[c/89DF85:自动识别]模式\n" +
+             "/ast hand —— 开启|关闭[c/F19092:手持识别]模式\n" +
+             "/ast armor —— 开启|关闭[c/F2F191:装备识别]模式\n" +
+             "/ast list —— [c/85CEDF:列出]自己的[c/85CEDF:自动储存表]\n" +
+             "/ast clear —— [c/E488C1:清理]自动储存表\n" +
+             "/ast bank —— 监听[c/F3B691:储存空间位格]开关\n" +
+             "/ast mess —— 开启|关闭物品[c/F2F292:自存消息]\n" +
+             "/ast sd 数字 —— 设置[c/85CFDE:储存速度](越小越快)\n" +
+             "/ast add 或 del 名字 —— [c/87DF86:添加]|[c/F19092:删除]自存物品", 193, 223, 186);
+        }
+    }
+    #endregion
+
+    #region 重置数据方法
+    public static void Reset(CommandArgs args)
+    {
+        if (args.Parameters.Count == 0)
+        {
+            AutoStoreItems.Data.Items.Clear();
+            args.Player.SendSuccessMessage($"已[c/92C5EC:清空]所有玩家《自动储存》数据！");
+            return;
+        }
+    }
+    #endregion
+
     public static void Ast(CommandArgs args)
     {
         var name = args.Player.Name;
@@ -98,12 +132,7 @@ public class Commands
                 return;
             }
 
-            if (args.Parameters[0].ToLower() == "reset" && args.Player.HasPermission("AutoStore.admin"))
-            {
-                AutoStoreItems.Data.Items.Clear();
-                args.Player.SendSuccessMessage($"已[c/92C5EC:清空]所有玩家数据！");
-                return;
-            }
+
         }
 
         if (args.Parameters.Count == 2)
@@ -175,28 +204,5 @@ public class Commands
             }
         }
     }
-
-    #region 菜单方法
-    private static void HelpCmd(TSPlayer player)
-    {
-        if (player == null) return;
-        else
-        {
-            player.SendMessage("【自动储存】指令菜单 [i:3456][C/F2F2C7:插件开发] [C/BFDFEA:by] [c/00FFFF:羽学][i:3459]\n" +
-             "/ast —— 查看自动储存菜单\n" +
-             "/ast reset —— 清空[c/85CFDE:所有玩家]数据\n" +
-             "/ast auto —— 开启|关闭[c/89DF85:自动识别]模式\n" +
-             "/ast hand —— 开启|关闭[c/F19092:手持识别]模式\n" +
-             "/ast armor —— 开启|关闭[c/F2F191:装备识别]模式\n" +
-             "/ast list —— [c/85CEDF:列出]自己的[c/85CEDF:自动储存表]\n" +
-             "/ast clear —— [c/E488C1:清理]自动储存表\n" +
-             "/ast bank —— 监听[c/F3B691:储存空间位格]开关\n" +
-             "/ast mess —— 开启|关闭物品[c/F2F292:自存消息]\n" +
-             "/ast sd 数字 —— 设置[c/85CFDE:储存速度](越小越快)\n" +
-             "/ast add 或 del 名字 —— [c/87DF86:添加]|[c/F19092:删除]自存物品", 193, 223, 186);
-        }
-    }
-    #endregion
-
 
 }
