@@ -215,9 +215,9 @@ public class AutoStoreItems : TerrariaPlugin
                 var inv = plr.TPlayer.inventory[i];
 
                 //自动存物品
-                if (!list.HandMode)
+                if (list.AutoMode && !list.HandMode)
                 {
-                    if (list.AutoMode && Config.BankItems.Contains(inv.type) && Timer % list.UpdateRate == 0)
+                    if (Config.BankItems.Contains(inv.type) && Timer % list.UpdateRate == 0)
                     {
                         StoreItemInBanks(plr, inv, list.Bank, list.Mess, list.ItemName);
 
@@ -231,7 +231,7 @@ public class AutoStoreItems : TerrariaPlugin
                 //手持储存
                 else
                 {
-                    if (list.HandMode && Config.BankItems.Contains(plr.TPlayer.inventory[plr.TPlayer.selectedItem].type))
+                    if (Config.BankItems.Contains(plr.TPlayer.inventory[plr.TPlayer.selectedItem].type))
                     {
                         StoreItemInBanks(plr, inv, list.Bank, list.Mess, list.ItemName);
 
@@ -359,7 +359,7 @@ public class AutoStoreItems : TerrariaPlugin
         for (int i2 = 0; i2 < 40; i2++)
         {
             bankItem = plr.bank.item[i2];
-            if (bankItem.IsACoin || bankItem.netID == coin)
+            if (bankItem.IsAir || bankItem.netID == coin)
             {
                 bankSolt = i2;
                 break;

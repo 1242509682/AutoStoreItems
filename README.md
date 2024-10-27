@@ -6,6 +6,9 @@
   
 ## 更新日志  
 ```
+v1.2.7 fix
+修复钱币堆叠错误问题
+
 v1.2.7
 移除大量非必要的配置项
 加入了一个完整的指令版并美化了指令菜单
@@ -66,9 +69,9 @@ v1.0.0
 | 语法                             | 别名  |       权限       |                   说明                   |
 | -------------------------------- | :---: | :--------------: | :--------------------------------------: |
 | /ast  | /自存 |   AutoStore.use    |    指令菜单    |
-| /ast auto | /自存 auto |   AutoStore.use    |    开启|关闭自动识别模式   |
-| /ast hand | /自存 hand |   AutoStore.use    |    开启|关闭手持识别模式   |
-| /ast armor | /自存 armor |   AutoStore.use    |    开启|关闭装备识别模式   |
+| /ast auto | /自存 auto |   AutoStore.use    |    开启或关闭自动识别模式   |
+| /ast hand | /自存 hand |   AutoStore.use    |    开启或关闭手持识别模式   |
+| /ast armor | /自存 armor |   AutoStore.use    |    开启或关闭装备识别模式   |
 | /ast list  | /自存 list |   AutoStore.use    |    列出自己的自存桶物品名    |
 | /ast clear | /自存 clear |   AutoStore.use    |    清空自己的自存桶表   |
 | /ast bank | /自存 auto |   AutoStore.use    |    将物品放入存钱罐时自动添加自存表   |
